@@ -12,7 +12,8 @@
       </div>
     </div>
     <div class="contentContainer">
-
+      <Section title="SectionSmall" content="<p>smt</p>" style="small" />
+      <Section title="SectionBig" content="<p>smt</p>" style="big" />
     </div>
   </div>
 </template>
@@ -27,12 +28,13 @@
 
 // Import Components
 import MenuItem from '@/components/MenuItem.vue';
+import Section from '@/components/Section.vue';
 
 
 export default {
   name: 'App',
   components: {
-    MenuItem
+    MenuItem, Section
   },
 }
 </script>
