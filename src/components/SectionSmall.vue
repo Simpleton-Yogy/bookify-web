@@ -11,7 +11,7 @@
 
 
 export default {
-  name: 'MenuItem',
+  name: 'SectionSmall',
   components: {
     
   },
@@ -47,7 +47,7 @@ export default {
         font-family: 'Montserrat', sans-serif;
         font-size: 35px;
         font-weight: 700;
-        margin: 0 0 0 -20px;
+        margin: 0 0 15px -20px;
     }
 
     .sectionContent {
