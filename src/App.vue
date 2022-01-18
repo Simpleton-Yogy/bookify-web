@@ -12,8 +12,7 @@
       </div>
     </div>
     <div class="contentContainer">
-      <Section title="SectionSmall" content="<p>smt</p>" style="small" />
-      <Section title="SectionBig" content="<p>smt</p>" style="big" />
+      <Home />
     </div>
   </div>
 </template>
@@ -21,20 +20,19 @@
 <script>
 
 // Import Pages
-// import Home from '@/pages/Home.vue';
+import Home from '@/pages/Home.vue';
 // import Library from '@/pages/Library.vue';
 // import Search from '@/pages/Search.vue';
 // import Settings from '@/pages/Settings.vue';
 
 // Import Components
 import MenuItem from '@/components/MenuItem.vue';
-import Section from '@/components/Section.vue';
 
 
 export default {
   name: 'App',
   components: {
-    MenuItem, Section
+    MenuItem, Home
   },
 }
 </script>
