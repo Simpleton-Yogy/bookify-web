@@ -2,7 +2,7 @@
     <div class="bookContainer">
         <div class="bookImageStack">
             <div class="bookStatusLabel">{{ status }}</div>
-            <img class="bookImage" :src="image"/>
+            <img class="bookImage" :src="image" loading="lazy"/>
             <div class="bookSeeDetails">See details</div>
         </div>
         <div class="bookTextContainer">
@@ -43,6 +43,7 @@ export default {
 
 .bookContainer {
     min-width: 320px;
+    max-width: 320px;
     display: flex;
     flex-flow: row nowrap;
     align-items: stretch;

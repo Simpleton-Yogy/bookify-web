@@ -62,7 +62,7 @@ export default {
         }
 
         &::-webkit-scrollbar-track {
-            height: 8px;
+            height: 10px;
             background-color: $light;
             border-radius: 2px;
         }
@@ -71,6 +71,7 @@ export default {
             height: 6px;
             background-color: $blue;
             border-radius: 2px;
+            margin: 2px
         }
     }
 }

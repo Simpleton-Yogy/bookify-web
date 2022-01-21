@@ -69,7 +69,7 @@ export default {
 body {
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 .mainContainer {
@@ -149,11 +149,11 @@ body {
 }
 
 .fade-enter-active {
-  animation: fade-animation reverse 160ms ease-in-out;
+  animation: fade-animation reverse 260ms ease-in-out;
 }
 
 .fade-leave-active {
-  animation: fade-animation 160ms ease-in-out;
+  animation: fade-animation 260ms ease-in-out;
 }
 
 @keyframes fade-animation {

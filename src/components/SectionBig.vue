@@ -1,6 +1,6 @@
 <template>
     <div class="sectionContainer">
-        <div class="sectionTitle">{{ title }}</div>
+        <div v-if="this.$props.title" class="sectionTitle">{{ title }}</div>
         <div class="sectionContent">
             <slot></slot>
         </div>
@@ -33,7 +33,7 @@ export default {
     flex-flow: column nowrap;
     justify-content: center;
     align-items: flex-start;
-    padding: 20px 0 20px 20px;
+    padding: 30px 0 20px 50px;
     background-color: $dark;
     border-radius: 10px 0 0 10px;
     margin-bottom: 5%;
@@ -43,7 +43,7 @@ export default {
         font-family: 'Montserrat', sans-serif;
         font-size: 35px;
         font-weight: 700;
-        margin: 0 0 15px -10px;
+        margin: 0 0 15px -20px;
     }
 
     .sectionContent {
@@ -52,8 +52,26 @@ export default {
         justify-content: flex-start;
         align-items: flex-start;
         overflow-y: auto;
-        min-height: 500px;
         width: 100%;
+        padding-bottom: 1vh;
+        max-height: 60vh;
+
+        &::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        &::-webkit-scrollbar-track {
+            width: 10px;
+            background-color: $light;
+            border-radius: 2px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            width: 6px;
+            background-color: $blue;
+            border-radius: 2px;
+            margin: 2px
+        }
     }
 
     
