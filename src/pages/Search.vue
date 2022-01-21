@@ -7,7 +7,7 @@
         <SectionBig title="Search results">
             <SectionLoader v-if="processing" :text="loaderTitle" />
             <div v-else-if="searchResults.length < 1" class="searchEmptyContainer">
-                <div class="searchEmptyTitle">No results</div>
+                <div class="searchEmptyTitle">{{ iconTitle }}</div>
                 <img class="searchEmptyIcon" :src="require('../assets/folderIcon.svg')" />
             </div>
             <transition-group name="fade">
@@ -38,7 +38,8 @@ export default {
         searchResults: [],
         queryInput: "",
         processing: false,
-        loaderTitle: ""
+        loaderTitle: "",
+        iconTitle: "Try searching for a book!"
     }
   },
   methods: {
@@ -91,6 +92,13 @@ export default {
                         'image': value.image
                     })
                     }
+            })
+
+            .catch(error => {
+                this.processing = false
+                this.searchResults = []
+                this.iconTitle = "No books found under that title"
+                console.log(error)
             })
       }
   }
