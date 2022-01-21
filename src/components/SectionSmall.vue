@@ -35,7 +35,7 @@ export default {
     flex-flow: column nowrap;
     justify-content: center;
     align-items: flex-start;
-    padding: 30px 0 30px 50px;
+    padding: 30px 0 20px 50px;
     background-color: $dark;
     border-radius: 10px 0 0 10px;
     margin-bottom: 5%;
@@ -56,6 +56,22 @@ export default {
         overflow-x: auto;
         min-height: 100px;
         width: 100%;
+
+        &::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        &::-webkit-scrollbar-track {
+            height: 8px;
+            background-color: $light;
+            border-radius: 2px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            height: 6px;
+            background-color: $blue;
+            border-radius: 2px;
+        }
     }
 }
 

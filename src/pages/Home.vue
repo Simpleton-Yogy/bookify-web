@@ -6,9 +6,11 @@
       <SectionSmall title="Wanted books"></SectionSmall>
       <SectionSmall title="Most read this week">
         <SectionLoader v-if="popularBooks.length < 1" text="Crunching the data" />
-        <template v-for="book in popularBooks" :key="book.key" >
-          <Book :title="book.title" :author="book.author" :release="book.release" :image="book.image" />
-        </template>
+        <transition-group name="fade">
+          <template v-for="book in popularBooks" :key="book.key">
+              <Book :title="book.title" :author="book.author" :release="book.release" :image="book.image" />
+          </template>
+        </transition-group>
       </SectionSmall>
   </div>
 </template>
@@ -62,6 +64,7 @@ export default {
     flex-flow: column nowrap;
     width: 95%;
     padding-top: 5%;
+    margin-bottom: -100%;
 }
 
 </style>

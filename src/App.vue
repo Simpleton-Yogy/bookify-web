@@ -12,9 +12,10 @@
       </div>
     </div>
     <div class="contentContainer">
-      <transition name="slide-fade">
+      <transition-group name="slide-fade">
         <Home v-if="selectedMenuItem == 'home'"/>
-      </transition>
+        <Search v-if="selectedMenuItem == 'search'"/>
+      </transition-group>
     </div>
   </div>
 </template>
@@ -24,7 +25,7 @@
 // Import Pages
 import Home from '@/pages/Home.vue';
 // import Library from '@/pages/Library.vue';
-// import Search from '@/pages/Search.vue';
+import Search from '@/pages/Search.vue';
 // import Settings from '@/pages/Settings.vue';
 
 // Import Components
@@ -33,7 +34,7 @@ import MenuItem from '@/components/MenuItem.vue';
 export default {
   name: 'App',
   components: {
-    MenuItem, Home
+    MenuItem, Home, Search
   },
   data: function() {
     return {
@@ -123,11 +124,16 @@ body {
 }
 
 .slide-fade-enter-active {
-  animation: slide-fade-animation reverse 220ms ease-in-out;
+  animation: slide-fade-animation reverse 220ms 220ms ease-in-out;
 }
 
 .slide-fade-leave-active {
   animation: slide-fade-animation 220ms ease-in-out;
+}
+
+.slide-fade-enter {
+  opacity: 0;
+  transform: translateX(30px);
 }
 
 @keyframes slide-fade-animation {
@@ -139,6 +145,24 @@ body {
   to {
     opacity: 0;
     transform: translateX(30px);
+  }
+}
+
+.fade-enter-active {
+  animation: fade-animation reverse 160ms ease-in-out;
+}
+
+.fade-leave-active {
+  animation: fade-animation 160ms ease-in-out;
+}
+
+@keyframes fade-animation {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
   }
 }
 

@@ -6,7 +6,7 @@
             <div class="bookSeeDetails">See details</div>
         </div>
         <div class="bookTextContainer">
-            <div class="bookTitle">{{ title }}</div>
+            <div class="bookTitle">{{ title.replace(/: .*/gm, "") }}</div>
             <div class="bookAuthor">{{ author }}</div>
             <div class="bookRating">{{ rating }}</div>
             <div class="bookRelease">{{ release }}</div>
@@ -42,6 +42,7 @@ export default {
 @import "@/assets/colors.scss";
 
 .bookContainer {
+    min-width: 320px;
     display: flex;
     flex-flow: row nowrap;
     align-items: stretch;
@@ -49,8 +50,7 @@ export default {
     padding: 5px;
     border-radius: 5px;
     background-color: $light;
-    width: 320px;
-    margin: 0 10px;
+    margin: 0 10px 20px 10px;
 
     .bookImageStack {
         display: flex;
