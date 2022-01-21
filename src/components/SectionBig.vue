@@ -17,10 +17,7 @@ export default {
   },
   props: [
       'title'
-  ],
-
-  data: function () {
-  }
+  ]
 }
 
 
@@ -56,6 +53,7 @@ export default {
         align-items: flex-start;
         overflow-y: auto;
         min-height: 500px;
+        width: 100%;
     }
 
     

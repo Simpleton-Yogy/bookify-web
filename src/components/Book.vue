@@ -50,6 +50,7 @@ export default {
     border-radius: 5px;
     background-color: $light;
     width: 320px;
+    margin: 0 10px;
 
     .bookImageStack {
         display: flex;
@@ -63,40 +64,51 @@ export default {
         .bookStatusLabel {
             color: $text;
             text-align: center;
-            height: 20px;
-            margin: 0 0 -20px 0;
+            height: 24px;
+            margin: 0 0 -24px 0;
             z-index: 1;
             background-color: $blue;
             border-radius: 5px;
             width: 100%;
-            padding: 2px 0;
+            padding: 0;
             display: flex;
             flex-flow: column nowrap;
             align-items: center;
             justify-content: center;
-        }
+        }   
 
         .bookImage {
             height: 193px;
             width: auto;
             border-radius: 5px;
             z-index: 0;
+            margin: 0;
         }
 
         .bookSeeDetails{
             color: $text;
             text-align: center;
-            height: 20px;
-            margin: -20px 0 0 0;
-            z-index: 1;
+            height: 24px;
+            margin: -24px 0 0 0;
+            z-index: 2;
             background-color: $blue;
             border-radius: 5px;
             width: 100%;
-            padding: 2px 0;
+            padding: 0;
             display: flex;
             flex-flow: column nowrap;
             align-items: center;
             justify-content: center;
+            transition: all 220ms ease-in-out;
+
+            &:hover {
+                height: 193px;
+                margin: -193px 0 0 0;
+                animation: seeDetailsAnimation;
+                animation-duration: 220ms;
+                animation-timing-function: ease-in-out;
+                filter: brightness(120%);
+            }
         }
     }
 
@@ -135,5 +147,18 @@ export default {
         }
     }
 }
+
+@keyframes seeDetailsAnimation {
+    0% {
+        border-radius: 5px;
+    }
+    50% {
+        border-radius: 50% 50% 5px 5px;
+    }
+    100% {
+        border-radius: 5px;
+    }
+}
+
 
 </style>

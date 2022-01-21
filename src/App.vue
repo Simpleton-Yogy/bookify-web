@@ -5,14 +5,16 @@
         <div class="menuLogoText">Bookify</div>
       </div>
       <div class="menuItemsContainer">
-        <MenuItem text = "Home" icon = "homeIcon"  />
-        <MenuItem text = "Library" icon = "libraryIcon" />
-        <MenuItem text = "Search" icon = "searchIcon" />
-        <MenuItem text = "Settings" icon = "settingsIcon" />
+        <MenuItem text = "Home" icon = "homeIcon" value = "home" :toggledItem = "selectedMenuItem" @click="onMenuItemClick" />
+        <MenuItem text = "Library" icon = "libraryIcon" value = "library" :toggledItem = "selectedMenuItem" @click="onMenuItemClick" />
+        <MenuItem text = "Search" icon = "searchIcon" value = "search" :toggledItem = "selectedMenuItem" @click="onMenuItemClick" />
+        <MenuItem text = "Settings" icon = "settingsIcon" value = "settings" :toggledItem = "selectedMenuItem" @click="onMenuItemClick" />
       </div>
     </div>
     <div class="contentContainer">
-      <Home />
+      <transition name="slide-fade">
+        <Home v-if="selectedMenuItem == 'home'"/>
+      </transition>
     </div>
   </div>
 </template>
@@ -28,12 +30,25 @@ import Home from '@/pages/Home.vue';
 // Import Components
 import MenuItem from '@/components/MenuItem.vue';
 
-
 export default {
   name: 'App',
   components: {
     MenuItem, Home
   },
+  data: function() {
+    return {
+      selectedMenuItem: 'home',
+    }
+  },
+  methods: {
+    onMenuItemClick: function(value) {
+      if (typeof value !== "object"){
+        if (value !== this.selectedMenuItem){
+          this.selectedMenuItem = value
+        }
+      }
+    }
+  }
 }
 </script>
 
@@ -104,6 +119,28 @@ body {
     align-items: flex-end;
     background-color: $light;
   }
+  
 }
+
+.slide-fade-enter-active {
+  animation: slide-fade-animation reverse 220ms ease-in-out;
+}
+
+.slide-fade-leave-active {
+  animation: slide-fade-animation 220ms ease-in-out;
+}
+
+@keyframes slide-fade-animation {
+  from {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+}
+
 
 </style>

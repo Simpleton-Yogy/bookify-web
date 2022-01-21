@@ -1,10 +1,12 @@
 <template>
-    <div class="sectionContainer">
-        <div class="sectionTitle">{{ title }}</div>
-        <div class="sectionContent">
-            <slot></slot>
+    <transition name="slide-fade">
+        <div class="sectionContainer" v-if="!!$slots.default">
+            <div class="sectionTitle">{{ title }}</div>
+            <div class="sectionContent">
+                <slot></slot>
+            </div>
         </div>
-    </div>
+    </transition>
 </template>
 
 <script>
@@ -17,11 +19,7 @@ export default {
   },
   props: [
       'title'
-  ],
-
-  data: function () {
-
-  }
+  ]
 }
 
 
@@ -57,9 +55,8 @@ export default {
         align-items: center;
         overflow-x: auto;
         min-height: 100px;
+        width: 100%;
     }
-
-    
 }
 
 </style>
