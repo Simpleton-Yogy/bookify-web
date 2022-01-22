@@ -8,7 +8,7 @@
         <SectionLoader v-if="popularBooks.length < 1" text="Crunching the data" />
         <transition-group name="fade">
           <template v-for="book in popularBooks" :key="book.key">
-              <Book :title="book.title" :author="book.author" :release="book.release" :image="book.image" />
+              <Book :id="book.id" :title="book.title" :author="book.author" :release="book.release" :image="book.image" :status="book.status" />
           </template>
         </transition-group>
       </SectionSmall>
@@ -43,10 +43,12 @@ export default {
         for (const [key, value] of Object.entries(response.data)){
           this.popularBooks.push({
             'key': uniqueId('book-'),
+            'id': value.id,
             'title': key,
             'author': value.author,
             'release': value.release,
-            'image': value.image
+            'image': value.image,
+            'status': value.status
           })
         }
       })

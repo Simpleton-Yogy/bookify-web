@@ -1,34 +1,52 @@
 <template>
     <div class="bookContainer">
         <div class="bookImageStack">
-            <div class="bookStatusLabel">{{ status }}</div>
+            <div v-if="status" class="bookStatusLabel" :class="{ redStatusLabel: status === 'Missing' || status === 'Dowloading', greenStatusLabel: status === 'Available' || status === 'Gathering' }" >{{ status }}</div>
             <img class="bookImage" :src="image" loading="lazy"/>
-            <div class="bookSeeDetails">See details</div>
+            <div class="bookSeeDetails" @click="requestBookPage">See details</div>
         </div>
         <div class="bookTextContainer">
             <div class="bookTitle">{{ title.replace(/: .*/gm, "") }}</div>
             <div class="bookAuthor">{{ author }}</div>
             <div class="bookRating">{{ rating }}</div>
             <div class="bookRelease">{{ release }}</div>
+            <div class="bookButtonsContainer">
+                <Button>Request</Button>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
 
+import Button from '@/components/Button.vue';
 
 export default {
   name: 'Book',
   components: {
-    
+    Button
   },
   props: [
-      'title', 'author', 'image', 'rating', 'release'
+      'title', 'author', 'image', 'rating', 'release', 'status', 'id'
   ],
+
+  methods: {
+      requestBookPage: function() {
+        this.emitter.emit('request-book-page', this.id)
+      },
+
+      requestBook: function() {
+
+      },
+
+      getBookStatus: function() {
+
+      }
+  },
 
   data: function () {
       return {
-          status: "Some status"
+          
       }
   }
 }
@@ -101,6 +119,7 @@ export default {
             align-items: center;
             justify-content: center;
             transition: all 220ms ease-in-out;
+            cursor: pointer;
 
             &:hover {
                 height: 193px;
@@ -118,7 +137,7 @@ export default {
         flex-flow: column nowrap;
         align-items: center;
         justify-content: flex-start;
-        margin-right: 5px;
+        margin-left: 5px;
         color: $text;
         font-family: 'Montserrat', sans-serif;
         text-align: center;
@@ -145,6 +164,15 @@ export default {
         .bookRelease {
             font-size: 10px;
             font-weight: 500;
+        }
+
+        .bookButtonsContainer {
+            margin-top: auto;
+            width: 80%;
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: center;
+            align-items: center;
         }
     }
 }

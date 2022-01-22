@@ -12,7 +12,7 @@
             </div>
             <transition-group name="fade">
                 <template v-for="book in searchResults" :key="book.key">
-                    <Book :title="book.title" :author="book.author" :release="book.release" :image="book.image" />
+                    <Book :id="book.id" :title="book.title" :author="book.author" :release="book.release" :image="book.image" :status="book.status" />
                 </template>
             </transition-group>
         </SectionBig>
@@ -86,10 +86,12 @@ export default {
                 for (const [key, value] of Object.entries(response.data)){
                     this.searchResults.push({
                         'key': uniqueId('book-'),
+                        'id': value.id,
                         'title': key,
                         'author': value.author,
                         'release': value.release,
-                        'image': value.image
+                        'image': value.image,
+                        'status': value.status
                     })
                     }
             })

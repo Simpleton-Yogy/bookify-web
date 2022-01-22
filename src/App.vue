@@ -5,16 +5,17 @@
         <div class="menuLogoText">Bookify</div>
       </div>
       <div class="menuItemsContainer">
-        <MenuItem text = "Home" icon = "homeIcon" value = "home" :toggledItem = "selectedMenuItem" @click="onMenuItemClick" />
-        <MenuItem text = "Library" icon = "libraryIcon" value = "library" :toggledItem = "selectedMenuItem" @click="onMenuItemClick" />
-        <MenuItem text = "Search" icon = "searchIcon" value = "search" :toggledItem = "selectedMenuItem" @click="onMenuItemClick" />
-        <MenuItem text = "Settings" icon = "settingsIcon" value = "settings" :toggledItem = "selectedMenuItem" @click="onMenuItemClick" />
+        <MenuItem text = "Home" icon = "homeIcon" value = "home" :toggledItem="selectedMenuItem" @click="onMenuItemClick" />
+        <MenuItem text = "Library" icon = "libraryIcon" value = "library" :toggledItem="selectedMenuItem" @click="onMenuItemClick" />
+        <MenuItem text = "Search" icon = "searchIcon" value = "search" :toggledItem="selectedMenuItem" @click="onMenuItemClick" />
+        <MenuItem text = "Settings" icon = "settingsIcon" value = "settings" :toggledItem="selectedMenuItem" @click="onMenuItemClick" />
       </div>
     </div>
     <div class="contentContainer">
       <transition-group name="slide-fade">
         <Home v-if="selectedMenuItem == 'home'"/>
         <Search v-if="selectedMenuItem == 'search'"/>
+        <BookDetails v-if="selectedMenuItem == 'book'" :bookID="bookID" />
       </transition-group>
     </div>
   </div>
@@ -27,6 +28,7 @@ import Home from '@/pages/Home.vue';
 // import Library from '@/pages/Library.vue';
 import Search from '@/pages/Search.vue';
 // import Settings from '@/pages/Settings.vue';
+import BookDetails from '@/pages/BookDetails.vue';
 
 // Import Components
 import MenuItem from '@/components/MenuItem.vue';
@@ -34,7 +36,7 @@ import MenuItem from '@/components/MenuItem.vue';
 export default {
   name: 'App',
   components: {
-    MenuItem, Home, Search
+    MenuItem, Home, Search, BookDetails
   },
   data: function() {
     return {
@@ -49,6 +51,13 @@ export default {
         }
       }
     }
+  },
+  mounted: function() {
+    this.emitter.on('request-book-page', (bookID) => {
+      this.bookID = bookID
+      console.log(this.bookID)
+      this.selectedMenuItem = 'book'
+    })
   }
 }
 </script>
@@ -127,7 +136,11 @@ body {
   animation: slide-fade-animation reverse 220ms 220ms ease-in-out;
 }
 
-.slide-fade-leave-active {
+.slide-fade-nd-enter-active {
+  animation: slide-fade-animation reverse 220ms ease-in-out;
+}
+
+.slide-fade-leave-active, .slide-fade-nd-leave-active {
   animation: slide-fade-animation 220ms ease-in-out;
 }
 
@@ -147,6 +160,7 @@ body {
     transform: translateX(30px);
   }
 }
+
 
 .fade-enter-active {
   animation: fade-animation reverse 260ms ease-in-out;
